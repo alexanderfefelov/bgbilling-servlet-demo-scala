@@ -11,6 +11,11 @@ class DemoServletScala extends HttpServlet {
     logger.trace("init")
   }
 
+  override def destroy(): Unit = {
+    logger.trace("destroy")
+    super.destroy()
+  }
+
   override def doGet(request: HttpServletRequest, response: HttpServletResponse): Unit = {
     logger.trace("doGet")
     val writer = response.getWriter
