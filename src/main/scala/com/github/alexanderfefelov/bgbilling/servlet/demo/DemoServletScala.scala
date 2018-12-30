@@ -21,7 +21,6 @@ class DemoServletScala extends HttpServlet {
     try {
       NestedContext.push(LOG_CONTEXT)
       logger.trace("destroy")
-      super.destroy()
     } finally {
       NestedContext.pop()
     }
