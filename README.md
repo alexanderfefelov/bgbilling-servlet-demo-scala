@@ -21,10 +21,13 @@ sbt assembly
 
 jar-файл, созданный в результате в каталоге `target/scala-2.12`, скопируйте в каталог `lib/ext` сервера BGBilling.
 
-В конфигурацию BGBilling добавьте это:
+В конфигурацию BGBilling добавьте:
 
 ```
 custom.servlet.keys=DemoServletScala
+#                    /
+#                   |
+#                   v
 custom.servlet.DemoServletScala.class=com.github.alexanderfefelov.bgbilling.servlet.demo.DemoServletScala
 custom.servlet.DemoServletScala.mapping=/demo-servlet-scala
 ```
