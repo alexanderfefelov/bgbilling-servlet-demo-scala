@@ -58,7 +58,7 @@ Hello, World!
 
 ```xml
 <appender name="SERVLET" class="org.apache.log4j.RollingFileAppender">
-    <param name="File" value="${log.dir.path}${log.prefix}.murmuring.log"/>
+    <param name="File" value="${log.dir.path}${log.prefix}.servlet.log"/>
     <param name="MaxFileSize" value="100MB"/>
     <param name="MaxBackupIndex" value="2"/>
     <param name="Append" value="true"/>
