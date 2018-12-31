@@ -77,8 +77,8 @@ class DemoServletScala extends HttpServlet {
     }
   }
 
-  val logger: Logger = Logger.getLogger(this.getClass)
+  private val logger: Logger = Logger.getLogger(this.getClass)
 
-  val LOG_CONTEXT = "servlet"
+  private val LOG_CONTEXT = "servlet"
 
 }
