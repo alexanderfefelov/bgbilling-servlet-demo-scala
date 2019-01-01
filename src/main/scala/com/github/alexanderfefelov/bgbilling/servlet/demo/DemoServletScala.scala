@@ -77,6 +77,26 @@ class DemoServletScala extends HttpServlet {
     }
   }
 
+  override def doOptions(request: HttpServletRequest, response: HttpServletResponse): Unit = {
+    try {
+      NestedContext.push(LOG_CONTEXT)
+      logger.trace("doOptions")
+      super.doOptions(request, response)
+    } finally {
+      NestedContext.pop()
+    }
+  }
+
+  override def doTrace(request: HttpServletRequest, response: HttpServletResponse): Unit = {
+    try {
+      NestedContext.push(LOG_CONTEXT)
+      logger.trace("doTrace")
+      super.doTrace(request, response)
+    } finally {
+      NestedContext.pop()
+    }
+  }
+
   private val logger: Logger = Logger.getLogger(this.getClass)
 
   private val LOG_CONTEXT = "servlet"
