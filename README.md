@@ -25,11 +25,14 @@ jar-файл, созданный в результате в каталоге `ta
 
 ```
 custom.servlet.keys=DemoServletScala
-#                    /
-#                   |
-#                   v
+#                    /                                   Fully qualified class name
+#                   |                                                |
+#                   v                 /------------------------------+----------------------------------\
 custom.servlet.DemoServletScala.class=com.github.alexanderfefelov.bgbilling.servlet.demo.DemoServletScala
 custom.servlet.DemoServletScala.mapping=/demo-servlet-scala
+#                                       \--------+--------/
+#                                                |
+#                                 Part of URL after /bgbilling
 ```
 Перезапустите сервер BGBilling.
 
