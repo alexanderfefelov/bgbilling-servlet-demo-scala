@@ -25,6 +25,7 @@ class DemoServletScala extends HttpServlet {
 
   override def doPost(request: HttpServletRequest, response: HttpServletResponse): Unit = wrap {
     logger.trace("doPost")
+    super.doPost(request, response)
   }
 
   override def doPut(request: HttpServletRequest, response: HttpServletResponse): Unit = wrap {
