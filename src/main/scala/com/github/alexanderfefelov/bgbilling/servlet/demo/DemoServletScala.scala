@@ -1,12 +1,10 @@
 package com.github.alexanderfefelov.bgbilling.servlet.demo
 
-import bitel.billing.server.CommonExecutor
+import javax.servlet.http.{HttpServlet, HttpServletRequest, HttpServletResponse}
 import org.apache.log4j.Logger
-import javax.servlet.http.HttpServletRequest
-import javax.servlet.http.HttpServletResponse
 import ru.bitel.common.logging.NestedContext
 
-class DemoServletScala extends CommonExecutor {
+class DemoServletScala extends HttpServlet {
 
   override def init(): Unit = wrap {
     logger.trace("init")
@@ -18,8 +16,11 @@ class DemoServletScala extends CommonExecutor {
 
   override def doGet(request: HttpServletRequest, response: HttpServletResponse): Unit = wrap {
     logger.trace("doGet")
+    import bitel.billing.common.VersionInfo
+    val kernelVer = VersionInfo.getVersionInfo("server")
     val writer = response.getWriter
     writer.println("Hello, World!")
+    writer.println(kernelVer.getModuleName + " " + kernelVer.getVersionString)
   }
 
   override def doPost(request: HttpServletRequest, response: HttpServletResponse): Unit = wrap {

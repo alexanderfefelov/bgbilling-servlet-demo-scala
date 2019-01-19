@@ -46,10 +46,11 @@ curl --request GET --include http://YOUR.BGBILLING.HOST:8080/bgbilling/demo-serv
 
 ```
 HTTP/1.1 200 OK
-Content-Length: 14
-Date: Sun, 30 Dec 2018 06:54:46 GMT
+Content-Length: 52
+Date: Sat, 19 Jan 2019 00:31:39 GMT
 
 Hello, World!
+kernel 7.1.1076 / 17.12.2018 21:37:50
 ```
 
 ## Логи
