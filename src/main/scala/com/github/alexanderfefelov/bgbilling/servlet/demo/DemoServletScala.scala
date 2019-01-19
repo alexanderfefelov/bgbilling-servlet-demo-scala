@@ -1,97 +1,60 @@
 package com.github.alexanderfefelov.bgbilling.servlet.demo
 
+import bitel.billing.server.CommonExecutor
 import org.apache.log4j.Logger
-import javax.servlet.http.HttpServlet
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 import ru.bitel.common.logging.NestedContext
 
-class DemoServletScala extends HttpServlet {
+class DemoServletScala extends CommonExecutor {
 
-  override def init(): Unit = {
-    try {
-      NestedContext.push(LOG_CONTEXT)
-      logger.trace("init")
-    } finally {
-      NestedContext.pop()
-    }
+  override def init(): Unit = wrap {
+    logger.trace("init")
   }
 
-  override def destroy(): Unit = {
-    try {
-      NestedContext.push(LOG_CONTEXT)
-      logger.trace("destroy")
-    } finally {
-      NestedContext.pop()
-    }
+  override def destroy(): Unit = wrap {
+    logger.trace("destroy")
   }
 
-  override def doGet(request: HttpServletRequest, response: HttpServletResponse): Unit = {
-    try {
-      NestedContext.push(LOG_CONTEXT)
-      logger.trace("doGet")
-      val writer = response.getWriter
-      writer.println("Hello, World!")
-    } finally {
-      NestedContext.pop()
-    }
+  override def doGet(request: HttpServletRequest, response: HttpServletResponse): Unit = wrap {
+    logger.trace("doGet")
+    val writer = response.getWriter
+    writer.println("Hello, World!")
   }
 
-  override def doPost(request: HttpServletRequest, response: HttpServletResponse): Unit = {
-    try {
-      NestedContext.push(LOG_CONTEXT)
-      logger.trace("doPost")
-      super.doPost(request, response)
-    } finally {
-      NestedContext.pop()
-    }
+  override def doPost(request: HttpServletRequest, response: HttpServletResponse): Unit = wrap {
+    logger.trace("doPost")
   }
 
-  override def doPut(request: HttpServletRequest, response: HttpServletResponse): Unit = {
-    try {
-      NestedContext.push(LOG_CONTEXT)
-      logger.trace("doPut")
-      super.doPut(request, response)
-    } finally {
-      NestedContext.pop()
-    }
+  override def doPut(request: HttpServletRequest, response: HttpServletResponse): Unit = wrap {
+    logger.trace("doPut")
+    super.doPut(request, response)
   }
 
-  override def doDelete(request: HttpServletRequest, response: HttpServletResponse): Unit = {
-    try {
-      NestedContext.push(LOG_CONTEXT)
-      logger.trace("doDelete")
-      super.doDelete(request, response)
-    } finally {
-      NestedContext.pop()
-    }
+  override def doDelete(request: HttpServletRequest, response: HttpServletResponse): Unit = wrap {
+    logger.trace("doDelete")
+    super.doDelete(request, response)
   }
 
-  override def doHead(request: HttpServletRequest, response: HttpServletResponse): Unit = {
-    try {
-      NestedContext.push(LOG_CONTEXT)
-      logger.trace("doHead")
-      super.doHead(request, response)
-    } finally {
-      NestedContext.pop()
-    }
+  override def doHead(request: HttpServletRequest, response: HttpServletResponse): Unit = wrap {
+    logger.trace("doHead")
+    super.doHead(request, response)
   }
 
-  override def doOptions(request: HttpServletRequest, response: HttpServletResponse): Unit = {
-    try {
-      NestedContext.push(LOG_CONTEXT)
-      logger.trace("doOptions")
-      super.doOptions(request, response)
-    } finally {
-      NestedContext.pop()
-    }
+  override def doOptions(request: HttpServletRequest, response: HttpServletResponse): Unit = wrap {
+    logger.trace("doOptions")
+    super.doOptions(request, response)
   }
 
-  override def doTrace(request: HttpServletRequest, response: HttpServletResponse): Unit = {
+  override def doTrace(request: HttpServletRequest, response: HttpServletResponse): Unit = wrap {
+    logger.trace("doTrace")
+    super.doTrace(request, response)
+  }
+
+  private def wrap[R](block: => R): R = {
     try {
       NestedContext.push(LOG_CONTEXT)
-      logger.trace("doTrace")
-      super.doTrace(request, response)
+      block
     } finally {
       NestedContext.pop()
     }

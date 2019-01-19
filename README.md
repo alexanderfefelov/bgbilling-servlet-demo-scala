@@ -19,7 +19,7 @@ cd bgbilling-servlet-demo-scala
 sbt assembly
 ```
 
-jar-файл, созданный в результате в каталоге `target/scala-2.12`, скопируйте в каталог `lib/ext` сервера BGBilling.
+jar-файл, созданный в результате в каталоге `target/scala-2.12`, скопируйте в каталог `lib/app` сервера BGBilling.
 
 В конфигурацию BGBilling добавьте:
 
