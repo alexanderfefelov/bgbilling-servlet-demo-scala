@@ -19,3 +19,5 @@ assemblyExcludedJars in assembly := {
   )
   classPath filter { x =>  jarsToDrop.contains(x.data.getName) }
 }
+
+assemblyJarName in assembly := s"${name.value}-${version.value}.jar"
