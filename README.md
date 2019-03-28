@@ -93,4 +93,5 @@ kernel 7.1.1076 / 17.12.2018 21:37:50
 ## Что дальше?
 
 * Ознакомьтесь с [описанием технологии Servlet](https://docs.oracle.com/javaee/7/tutorial/servlets.htm).
-* Посмотрите аналогичные проекты на языках [Java](https://github.com/alexanderfefelov/bgbilling-servlet-demo) и [Kotlin](https://github.com/alexanderfefelov/bgbilling-servlet-demo-kotlin).
+* Посмотрите аналогичные проекты на языках [Java](https://github.com/alexanderfefelov/bgbilling-servlet-demo), [Kotlin](https://github.com/alexanderfefelov/bgbilling-servlet-demo-kotlin)
+  и [Clojure](https://github.com/alexanderfefelov/bgbilling-servlet-demo-clojure).
