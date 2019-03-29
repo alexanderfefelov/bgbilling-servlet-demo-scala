@@ -7,7 +7,7 @@ scalaVersion := "2.12.8"
 lazy val root = project in file(".")
 
 libraryDependencies ++= Seq(
-  "javax.servlet" % "javax.servlet-api" % "3.1.0" % "provided",
+  "javax.servlet" % "javax.servlet-api" % "4.0.1" % "provided",
   "log4j" % "log4j" % "1.2.17"
 )
 
