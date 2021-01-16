@@ -2,7 +2,7 @@
 
 ## Что это?
 
-bgbilling-servlet-demo-scala - это Scala-версия демонстрационной реализации сервлетов и фильтров для использования совместно с сервером [BGBilling](https://bgbilling.ru/). 
+bgbilling-servlet-demo-scala - это Scala-версия демонстрационной реализации сервлетов и фильтров для использования совместно с сервером [BGBilling](https://bgbilling.ru/).
 
 ## Требования
 
