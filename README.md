@@ -103,6 +103,127 @@ X-Clacks-Overhead: GNU Terry Pratchett
 Hello, World!
 ```
 
+## О системе
+
+- [SysInfoScala.scala](src/main/scala/com/github/alexanderfefelov/bgbilling/servlet/demo/SysInfoScala.scala)
+- [UptimePuncherFilterScala.scala](src/main/scala/com/github/alexanderfefelov/bgbilling/servlet/demo/UptimePuncherFilterScala.scala)
+
+Добавьте в конфигурацию BGBilling:
+
+```properties
+# Servlet: О системе
+#
+custom.servlet.keys=SysInfoScala
+#                   │          │
+#                   └──┬───────┘
+#                      │
+#                Ключ сервлета                            Класс сервлета
+#                      │                                         │
+#              ┌───────┴──┐       ┌──────────────────────────────┴──────────────────────────────┐
+#              │          │       │                                                             │
+custom.servlet.SysInfoScala.class=com.github.alexanderfefelov.bgbilling.servlet.demo.SysInfoScala
+custom.servlet.SysInfoScala.mapping=/demo-servlet/sys-info-scala
+#                                   │                          │
+#                                   └─────────────┬────────────┘
+#                                                 │
+#                                     Часть URL после контекста
+#
+custom.servlet.SysInfoScala.filter.keys=UptimePuncherScala,TerryPratchettScala,CORS
+#                                       │                │ │                 │ │  │
+#                                       └─────┬──────────┘ └────────┬────────┘ └─┬┘
+#                                             │                     │            │
+#                                        Ключ фильтра          Ещё фильтр      И ещё один
+#                                             │
+#                                  ┌──────────┴─────┐
+#                                  │                │
+custom.servlet.SysInfoScala.filter.UptimePuncherScala.name=UptimePuncherScala
+custom.servlet.SysInfoScala.filter.UptimePuncherScala.class=com.github.alexanderfefelov.bgbilling.servlet.demo.UptimePuncherFilterScala
+#                                                           │                                                                         │
+#                                                           └──────────────────────────────────┬──────────────────────────────────────┘
+#                                                                                              │
+#                                                                                        Класс фильтра
+custom.servlet.SysInfoScala.filter.TerryPratchettScala.name=TerryPratchettScala
+custom.servlet.SysInfoScala.filter.TerryPratchettScala.class=com.github.alexanderfefelov.bgbilling.servlet.demo.TerryPratchettFilterScala
+custom.servlet.SysInfoScala.filter.CORS.name=CORS
+custom.servlet.SysInfoScala.filter.CORS.class=org.apache.catalina.filters.CorsFilter
+custom.servlet.SysInfoScala.filter.CORS.init-param.keys=AllowedOrigins
+#                                                       │            │
+#                                                       └───┬────────┘
+#                                                           │
+#                                                     Ключ параметра    Название параметра
+#                                                           │                    │
+#                                                  ┌────────┴───┐      ┌─────────┴────────┐
+#                                                  │            │      │                  │
+custom.servlet.SysInfoScala.filter.CORS.init-param.AllowedOrigins.name=cors.allowed.origins
+custom.servlet.SysInfoScala.filter.CORS.init-param.AllowedOrigins.value=*
+#                                                                       │
+#                                                                       │
+#                                                              Значение параметра
+```
+
+Перезапустите BGBilling.
+
+Теперь в логах будет так:
+
+```
+01-16/12:57:43  INFO [main] Server - Add custom servlet from setup...
+01-16/12:57:43  INFO [main] Server - Custom.servlet.keys => SysInfoScala
+01-16/12:57:43  INFO [main] Server - Custom.servlet.class => com.github.alexanderfefelov.bgbilling.servlet.demo.SysInfoScala
+01-16/12:57:43  INFO [main] Server - Custom.servlet.mapping => /demo-servlet/sys-info-scala
+01-16/12:57:43  INFO [main] Server - Add mapping: com.github.alexanderfefelov.bgbilling.servlet.demo.SysInfoScala to /demo-servlet/sys-info-scala
+01-16/12:57:43  INFO [main] Server - Add mapping: com.github.alexanderfefelov.bgbilling.servlet.demo.UptimePuncherFilterScala to /demo-servlet/sys-info-scala
+01-16/12:57:43  INFO [main] Server - Add mapping: com.github.alexanderfefelov.bgbilling.servlet.demo.TerryPratchettFilterScala to /demo-servlet/sys-info-scala
+01-16/12:57:43  INFO [main] Server - Add mapping: org.apache.catalina.filters.CorsFilter to /demo-servlet/sys-info-scala
+```
+
+и в ответ на запрос:
+
+```
+http --verbose --check-status \
+  GET http://bgbilling-server.backpack.test:63081/billing/demo-servlet/sys-info-scala \
+    "Origin: http://example.com"
+```
+
+```
+GET /billing/demo-servlet/sys-info-scala HTTP/1.1
+Accept: */*
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+Host: bgbilling-server.backpack.test:63081
+Origin: http://example.com
+User-Agent: HTTPie/1.0.3
+```
+
+вы получите:
+
+```
+HTTP/1.1 200 OK
+Access-Control-Allow-Credentials: true
+Access-Control-Allow-Origin: http://example.com
+Content-Length: 500
+Date: Sat, 16 Jan 2021 10:27:52 GMT
+Vary: Origin
+X-BGBilling-Server-Uptime: Started: 16.01.2021 13:27:39 Uptime: 0 d 00:00:13
+X-Clacks-Overhead: GNU Terry Pratchett
+
+Modules
+--------------------------------------------------
+
+0 kernel 8.0.1320 / 16.12.2020 18:10:08
+2 inet 8.0.832 / 15.12.2020 17:06:32
+1 card 8.0.307 / 06.10.2020 01:52:21
+3 npay 8.0.287 / 19.11.2020 18:41:17
+5 subscription 8.0.128 / 06.10.2020 01:52:39
+4 rscm 8.0.272 / 06.10.2020 01:52:36
+
+Runtime
+--------------------------------------------------
+
+Hostname/IP address: bgbilling-server.backpack.test/172.17.0.8
+Available processors: 8
+Memory free / max / total, MB: 306 /  444 / 343
+```
+
 ## Логи
 
 Для того, чтобы логи собирались в отдельном файле, необходимо изменить `data/log4j.xml`.
@@ -142,10 +263,12 @@ Hello, World!
 В результате после перезапуска BGBilling в файле `log/servlet.log` можно будет увидеть что-то вроде:
 
 ```
-01-16/12:10:01 TRACE [localhost.localdomain-startStop-1] TerryPratchettFilterScala - init
-01-16/12:10:53 TRACE [http-nio-0.0.0.0-8080-exec-2] HelloWorldScala - init
-01-16/12:11:05 TRACE [http-nio-0.0.0.0-8080-exec-4] TerryPratchettFilterScala - doFilter
-01-16/12:11:05 TRACE [http-nio-0.0.0.0-8080-exec-4] HelloWorldScala - doGet
+01-16/13:18:07 TRACE [localhost.localdomain-startStop-1] UptimePuncherFilterScala - init
+01-16/13:18:07 TRACE [localhost.localdomain-startStop-1] TerryPratchettFilterScala - init
+01-16/13:18:16 TRACE [http-nio-0.0.0.0-8080-exec-1] SysInfoScala - init
+01-16/13:18:16 TRACE [http-nio-0.0.0.0-8080-exec-1] UptimePuncherFilterScala - doFilter
+01-16/13:18:16 TRACE [http-nio-0.0.0.0-8080-exec-1] TerryPratchettFilterScala - doFilter
+01-16/13:18:16 TRACE [http-nio-0.0.0.0-8080-exec-1] SysInfoScala - doGet
 ```
 
 ## Что дальше?

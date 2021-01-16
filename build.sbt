@@ -8,14 +8,14 @@ lazy val root = project in file(".")
 
 libraryDependencies ++= Seq(
   "javax.servlet" % "javax.servlet-api" % "4.0.1" % "provided",
-  "log4j" % "log4j" % "1.2.17"
+  "log4j" % "log4j" % "1.2.17" % "provided",
+  "org.apache.tomcat.embed" % "tomcat-embed-core" % "8.5.61" % "provided"
 )
 
 assemblyExcludedJars in assembly := {
   val classPath = (fullClasspath in assembly).value
   val jarsToDrop = Seq(
-    "bgbilling-kernel-8.0_1321.jar",
-    "log4j-1.2.17.jar"
+    "bgbilling-kernel-8.0_1321.jar"
   )
   classPath filter { x =>  jarsToDrop.contains(x.data.getName) }
 }
