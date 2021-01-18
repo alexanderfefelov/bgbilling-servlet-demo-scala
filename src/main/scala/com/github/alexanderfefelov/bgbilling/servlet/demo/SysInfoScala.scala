@@ -89,7 +89,7 @@ class SysInfoScala extends HttpServlet {
       |
       |Hostname/IP address: ${InetAddress.getLocalHost}
       |Available processors: ${Runtime.getRuntime.availableProcessors}
-      |Memory free / max / total, MB: ${Runtime.getRuntime.freeMemory() / MB} /  ${Runtime.getRuntime.maxMemory() / MB} / ${Runtime.getRuntime.totalMemory() / MB}""".stripMargin
+      |Memory free / max / total, MB: ${Runtime.getRuntime.freeMemory() / MB} / ${Runtime.getRuntime.maxMemory() / MB} / ${Runtime.getRuntime.totalMemory() / MB}""".stripMargin
   }
 
   private def wrap[R](block: => R): R = {

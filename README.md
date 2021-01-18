@@ -200,7 +200,7 @@ User-Agent: HTTPie/1.0.3
 HTTP/1.1 200 OK
 Access-Control-Allow-Credentials: true
 Access-Control-Allow-Origin: http://example.com
-Content-Length: 500
+Content-Length: 499
 Date: Sat, 16 Jan 2021 10:27:52 GMT
 Vary: Origin
 X-BGBilling-Server-Uptime: Started: 16.01.2021 13:27:39 Uptime: 0 d 00:00:13
@@ -221,7 +221,7 @@ Runtime
 
 Hostname/IP address: bgbilling-server.backpack.test/172.17.0.8
 Available processors: 8
-Memory free / max / total, MB: 306 /  444 / 343
+Memory free / max / total, MB: 306 / 444 / 343
 ```
 
 ## Логи
