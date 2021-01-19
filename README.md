@@ -280,3 +280,6 @@ Memory free / max / total, MB: 306 / 444 / 343
   * Groovy - https://github.com/alexanderfefelov/bgbilling-servlet-demo-groovy,
   * Java - https://github.com/alexanderfefelov/bgbilling-servlet-demo,
   * Kotlin - https://github.com/alexanderfefelov/bgbilling-servlet-demo-kotlin.
+* Посмотрите, как можно расширить функционал BGBilling с помощью других механизмов:
+  * Dynaction - https://github.com/alexanderfefelov/bgbilling-dynaction-demo,
+  * Dynservice - https://github.com/alexanderfefelov/bgbilling-dynservice-demo.
