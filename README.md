@@ -76,9 +76,13 @@ custom.servlet.HelloWorldScala.filter.TerryPratchettScala.class=com.github.alexa
 
 Теперь выполните:
 
-```
+```bash
 http --verbose --check-status \
   GET http://bgbilling-server.backpack.test:63081/billing/demo-servlet/hello-world-scala
+#                                                        │                             │
+#                                                        └──────────────┬──────────────┘
+#                                                                       │
+#                                                           Часть URL после контекста
 ```
 
 В результате на запрос:
@@ -103,7 +107,7 @@ X-Clacks-Overhead: GNU Terry Pratchett
 Hello, World!
 ```
 
-## О системе
+## О системе — взаимодействуем с BGBilling
 
 - [SysInfoScala.scala](src/main/scala/com/github/alexanderfefelov/bgbilling/servlet/demo/SysInfoScala.scala)
 - [UptimePuncherFilterScala.scala](src/main/scala/com/github/alexanderfefelov/bgbilling/servlet/demo/UptimePuncherFilterScala.scala)
@@ -178,10 +182,14 @@ custom.servlet.SysInfoScala.filter.CORS.init-param.AllowedOrigins.value=*
 
 и в ответ на запрос:
 
-```
+```bash
 http --verbose --check-status \
   GET http://bgbilling-server.backpack.test:63081/billing/demo-servlet/sys-info-scala \
     "Origin: http://example.com"
+#                                                        │                          │
+#                                                        └─────────────┬────────────┘
+#                                                                      │
+#                                                          Часть URL после контекста
 ```
 
 ```
@@ -276,10 +284,10 @@ Memory free / max / total, MB: 306 / 444 / 343
 * Ознакомьтесь с [описанием технологии Servlet](https://docs.oracle.com/javaee/7/tutorial/servlets.htm).
 * Изучите [список фильтров, встроенных в Tomcat 8.5](https://tomcat.apache.org/tomcat-8.5-doc/config/filter.html).
 * Посмотрите аналогичные проекты на других языках:
-  * Clojure - https://github.com/alexanderfefelov/bgbilling-servlet-demo-clojure,
-  * Groovy - https://github.com/alexanderfefelov/bgbilling-servlet-demo-groovy,
-  * Java - https://github.com/alexanderfefelov/bgbilling-servlet-demo,
-  * Kotlin - https://github.com/alexanderfefelov/bgbilling-servlet-demo-kotlin.
+  * Clojure — https://github.com/alexanderfefelov/bgbilling-servlet-demo-clojure,
+  * Groovy — https://github.com/alexanderfefelov/bgbilling-servlet-demo-groovy,
+  * Java — https://github.com/alexanderfefelov/bgbilling-servlet-demo,
+  * Kotlin — https://github.com/alexanderfefelov/bgbilling-servlet-demo-kotlin.
 * Посмотрите, как можно расширить функционал BGBilling с помощью других механизмов:
-  * Dynaction - https://github.com/alexanderfefelov/bgbilling-dynaction-demo,
-  * Dynservice - https://github.com/alexanderfefelov/bgbilling-dynservice-demo.
+  * Dynaction — https://github.com/alexanderfefelov/bgbilling-dynaction-demo,
+  * Dynservice — https://github.com/alexanderfefelov/bgbilling-dynservice-demo.
